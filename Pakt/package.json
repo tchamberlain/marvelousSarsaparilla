@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "react-native": "0.21.0",
+    "react-native-cli": "^0.1.10",
+    "react-native-icons": "^0.7.1",
     "react-redux": "4.4.0",
     "redux": "3.3.1",
     "redux-thunk": "1.0.3"
+  },
+  "devDependencies": {
+    "react-native-cli": "^0.1.10"
   }
 }
