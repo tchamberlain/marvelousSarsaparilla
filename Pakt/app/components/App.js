@@ -10,15 +10,15 @@ import React, {
 } from 'react-native';
 import SwitchRoute from '../containers/SwitchRoute';
 import Login from './Login';
-import Creator from './Creator';
 import GetPakts from '../containers/GetPakts';
+import CreatePakt from '../containers/CreatePakt';
 
 import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
 
 const scenes = Actions.create(
   <Scene  key="root">
     <Scene type="replace" key="login" initial={true} component={Login} title="Login"/>
-    <Scene key="creator" type="replace" component={Creator} title="Create"/>
+    <Scene key="createPakt" type="replace" component={CreatePakt} title="CreatePakt"/>
     <Scene key="paktList" type="replace" component={GetPakts} title="PaktList"/>
     {/*<Scene key="camera" type="replace" component={Camera} title="Camera"/>*/}
   </Scene>

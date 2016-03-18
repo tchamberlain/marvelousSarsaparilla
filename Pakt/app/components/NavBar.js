@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 const NavBar = ({ onNavPress }) => ( 
   <View style= {styles.navBar}>    
-    <Text style= {styles.navItem} onPress={() => onNavPress('creator')}>Create A Pakt</Text>
+    <Text style= {styles.navItem} onPress={() => onNavPress('createPakt')}>Create A Pakt</Text>
     <Text style= {styles.navItem} onPress={() => onNavPress('login')}> Login </Text>
     <Text style= {styles.navItem} onPress={() => onNavPress('paktList')}> PaktList </Text>
     {/*<Text style= {styles.navItem} onPress={() => onNavPress('camera')}> Camera </Text> */}
