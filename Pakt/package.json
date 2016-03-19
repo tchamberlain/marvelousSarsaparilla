@@ -10,17 +10,18 @@
     "step2": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm"
   },
   "dependencies": {
+    "babel-preset-react": "^6.5.0",
     "isomorphic-fetch": "^2.2.1",
     "react": "0.14.7",
     "react-native": "0.22.0-rc",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-router-flux": "^3.0.9",
     "react-redux": "4.4.0",
+    "react-redux-form": "^0.8.8",
     "redux": "3.3.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "1.0.3",
-    "rnpm": "^1.5.2",
-    "tcomb-form-native": "^0.4.0"
+    "rnpm": "^1.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0",

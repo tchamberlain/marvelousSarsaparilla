@@ -13,7 +13,7 @@ import Login from './Login';
 import GetPakts from '../containers/GetPakts';
 import CreatePakt from '../containers/CreatePakt';
 
-import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
+import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-router-flux';
 
 const scenes = Actions.create(
   <Scene  key="root">
