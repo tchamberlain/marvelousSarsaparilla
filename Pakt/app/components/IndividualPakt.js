@@ -14,21 +14,33 @@ import React, {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#F5FCFF',
-  },
-  textContainer: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  heading: {
+    flex: .1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  body: {
+    flex: .9,
+  },
+  subtitle: {
+    fontSize: 30,
+    // flex: .8,
+  },
+  back: {
+    marginRight: 12,
   },
 });
 
 const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId }) => (
   <View style={styles.container}>
-    <View style={styles.textContainer}>
-      <Text>{currentPakt.name}</Text>
+    <View style={styles.heading} >
+      <Image style={styles.back} source={{uri: 'http://uxrepo.com/static/icon-sets/ionicons/svg/chevron-left.svg'}} style={{width: 25, height: 25}}  />
+      <Text style={styles.subtitle}>{currentPakt.name}</Text>
+    </View>
+    <View style={styles.body} >
       <Text>{currentPakt.description}</Text>
       {(accepted) ? null :
         <View>
@@ -44,7 +56,7 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId 
           }><Text>Decline</Text></TouchableHighlight>
         </View>
         }
-    </View>
+      </View>
   </View>
 );
 
