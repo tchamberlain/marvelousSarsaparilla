@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
   friend: {
     margin: 5,
   },
+  subtitle: {
+    marginTop: 20,
+    marginBottom: 4,
+    fontSize: 15,
+    justifyContent:'center',
+  },
 });
 
 class FriendsRow extends React.Component {
@@ -32,7 +38,6 @@ class FriendsRow extends React.Component {
     if( numAllowedClicks!== 0){ //if selection allowed
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         if (numAllowedClicks === 1) { //if only one selected friend allowed, de-select other friends
-          console.log('numAllowedClicks &&&&&&&&&', numAllowedClicks);
           friends.forEach(function(x){
             if(x.selected === true){
               x.selected = false;
@@ -40,7 +45,7 @@ class FriendsRow extends React.Component {
           }); 
         }
         rowData.selected = !(rowData.selected);
-        this.setState({dataSource: ds.cloneWithRows(friends.slice())
+        this.setState({dataSource: ds.cloneWithRows(friends)
         });
     }
   }
@@ -60,6 +65,7 @@ class FriendsRow extends React.Component {
   render() {
     return (
       <View>
+      <Text style={styles.subtitle}>{this.props.title || ''}</Text>
       <ListView
         horizontal ='true'
         dataSource={this.state.dataSource}

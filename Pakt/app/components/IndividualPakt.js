@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
   },
 });
 
+import FriendsRow from './FriendsRow';
+
+
 class PaktPics extends Component {
   constructor(props) {
     super(props);
@@ -105,30 +108,9 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId,
 class ShowFriends extends React.Component {
   render(){
     const {open, friends} = this.props;
-    //SWIIIIIIIIITCH THIS WHEN OPEN BECOMES THE DEEEEEFAUUUUUULLLLLT
-    return (open === true) ? <FriendsView title={'Friends:'} friends={friends}/> : <WinnersLosersView friends={friends}/>;
+    return open ? <FriendsRow title={'Friends:'} numAllowedClicks={1} friends={friends}/> : <WinnersLosersView friends={friends}/>;
   }
 }
-
-class FriendsView extends React.Component {
-  render() {
-    const {friends, title} = this.props;
-    let dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
-    });      
-    dataSource = dataSource.cloneWithRows(friends);
-    return (
-      <View>
-        <Text style={styles.subheading}>{title}</Text>
-        <ListView
-          horizontal ='true'
-          dataSource={dataSource}
-          renderRow={(rowData) => <TabIcon rowData = {rowData} selected = {!rowData.invited} name = {rowData.name}></TabIcon>}
-           />
-      </View>
-    );
-  }
-};
 
 class WinnersLosersView extends React.Component {
   constructor(props) {
@@ -142,8 +124,8 @@ class WinnersLosersView extends React.Component {
   render(){
     return (
       <View>
-        <FriendsView friends={this.state.winners} title={'Winners:'}/>
-        <FriendsView friends={this.state.losers} title={'Losers:'}/>
+        <FriendsRow numAllowedClicks={1} friends={this.state.winners} title={'Winners:'}/>
+        <FriendsRow numAllowedClicks={1} friends={this.state.losers} title={'Losers:'}/>
       </View>
     );  
   };
