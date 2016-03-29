@@ -32,6 +32,7 @@ class FriendsRow extends React.Component {
     if( numAllowedClicks!== 0){ //if selection allowed
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         if (numAllowedClicks === 1) { //if only one selected friend allowed, de-select other friends
+          console.log('numAllowedClicks &&&&&&&&&', numAllowedClicks);
           friends.forEach(function(x){
             if(x.selected === true){
               x.selected = false;
@@ -48,7 +49,7 @@ class FriendsRow extends React.Component {
   _renderRow (rowData) {
       return (
       <View>
-        <TouchableHighlight onPress = {()=>{this.toggleFriendSelect(rowData);  this.forceUpdate()}} style={styles.friend}>
+        <TouchableHighlight underlayColor='white' onPress = {()=>{this.toggleFriendSelect(rowData);  this.forceUpdate()}} style={styles.friend}>
           <Image source={{uri: rowData.picture}} style={{width: 36, height: 36, borderRadius:18, borderWidth: 1, borderborderColor: (rowData.selected) ? 'blue' :'green'}}  />
         </TouchableHighlight>
           <Text style={{color: (rowData.selected) ? 'blue' :'black'}}>{rowData.name}</Text>
