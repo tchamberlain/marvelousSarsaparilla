@@ -65,7 +65,7 @@ class FriendsRow extends React.Component {
   render() {
     return (
       <View>
-      <Text style={styles.subtitle}>{this.props.title || ''}</Text>
+      {this.props.title ? <Text style={styles.subtitle}>{this.props.title }</Text> : null}
       <ListView
         horizontal ='true'
         dataSource={this.state.dataSource}
