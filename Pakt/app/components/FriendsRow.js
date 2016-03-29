@@ -27,37 +27,28 @@ class FriendsRow extends React.Component {
      this.state.dataSource =  ds.cloneWithRows(this.props.friends);
   }
 
-  getInitialState() {
-   }
-
   toggleFriendSelect = (rowData) => {
-      const {friends} = this.props;
-        //if only one selected friend allowed, de-select other friends
-        if (true) {
+    const { friends, numAllowedClicks } = this.props;
+    if( numAllowedClicks!== 0){ //if selection allowed
+      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        if (numAllowedClicks === 1) { //if only one selected friend allowed, de-select other friends
           friends.forEach(function(x){
             if(x.selected === true){
               x.selected = false;
             }
           }); 
         }
-      //if selection allowed
-      if ( true ) {
         rowData.selected = !(rowData.selected);
-        // this.setState({dataSource: this.state.dataSource.cloneWithRows(
-        //  friends
-        // )});
-        this.forceUpdate();
-      }
+        this.setState({dataSource: ds.cloneWithRows(friends.slice())
+        });
     }
+  }
 
   //component for displaying friends and highlighting selected friends
   _renderRow (rowData) {
-
-  console.log('&&*&*&*&*&*&**&&*&*&**&*&  0))))do we have anything..?', this);
-
       return (
       <View>
-        <TouchableHighlight onPress = {()=>this.toggleFriendSelect(rowData)} style={styles.friend}>
+        <TouchableHighlight onPress = {()=>{this.toggleFriendSelect(rowData);  this.forceUpdate()}} style={styles.friend}>
           <Image source={{uri: rowData.picture}} style={{width: 36, height: 36, borderRadius:18, borderWidth: 1, borderborderColor: (rowData.selected) ? 'blue' :'green'}}  />
         </TouchableHighlight>
           <Text style={{color: (rowData.selected) ? 'blue' :'black'}}>{rowData.name}</Text>
@@ -66,18 +57,12 @@ class FriendsRow extends React.Component {
   }
 
   render() {
-    // const {friends} = this.props;
-    // let dataSource = new ListView.DataSource({
-    //   rowHasChanged: (row1, row2) => row1 !== row2,
-    // });      
-    // dataSource = dataSource.cloneWithRows(friends);
-    console.log('do we have a ds???????????',this.state.dataSource)
     return (
       <View>
       <ListView
         horizontal ='true'
         dataSource={this.state.dataSource}
-        renderRow={(rowData)=> this._renderRow( rowData, this.props.friends)}
+        renderRow={(rowData)=> this._renderRow( rowData )}
 
          />
       </View>
