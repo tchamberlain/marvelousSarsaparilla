@@ -70,7 +70,6 @@ class FriendsRow extends React.Component {
         horizontal ='true'
         dataSource={this.state.dataSource}
         renderRow={(rowData)=> this._renderRow( rowData )}
-
          />
       </View>
     );

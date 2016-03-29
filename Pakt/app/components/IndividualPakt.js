@@ -84,7 +84,9 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId,
         <Header open={currentPakt.open}  win={currentPakt.Pakt_User.win} paktName={currentPakt.name}/>
         <Text style={styles.subheading}>{currentPakt.description}</Text>
       <View>
-        {(accepted) ? <PaktPics paktPictures={paktPictures} /> :
+      <ShowFriends open={currentPakt.open} friends={currentPakt.Users}/>
+
+        {accepted ? <PaktPics paktPictures={paktPictures} /> :
           <View>
             <TouchableHighlight onPress={() => respondtoInvite(true, currentUserId, currentPakt.id)}><Text>Accept</Text></TouchableHighlight>
             <TouchableHighlight onPress={() => Alert.alert(
@@ -96,8 +98,6 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId,
               ]
             )
             }><Text>Decline</Text></TouchableHighlight>
-
-            <ShowFriends open={currentPakt.open} friends={currentPakt.Users}/>
           </View>
           }
       </View>
@@ -116,11 +116,13 @@ class WinnersLosersView extends React.Component {
   constructor(props) {
     super(props);
     const {friends} =  this.props;
+
     //make winners and losers array from the friends array
     this.state = {};
     this.state.losers = friends.filter(function(x){return x.Pakt_User.win === false});
     this.state.winners = friends.filter(function(x){return x.Pakt_User.win === true});
   }
+
   render(){
     return (
       <View>
@@ -129,24 +131,6 @@ class WinnersLosersView extends React.Component {
       </View>
     );  
   };
-}
-
-// component for displaying friends and highlighting invited friends
-class FriendIcon extends React.Component {
-  togglFriendSelect = (friend) => {
-    friend.invited = !(friend.invited);
-    this.forceUpdate()
-  }
-    render(){
-        return (
-          <View>
-            <TouchableHighlight onPress = {()=>this.toggleFriendInvite(this.props.rowData)} style={styles.friend}>
-              <Image source={{uri: this.props.rowData.picture}} style={{width: 36, height: 36, borderRadius:18, borderWidth: 1, borderColor: (this.props.rowData.invited) ? 'blue' :'green'}}  />
-            </TouchableHighlight>
-              <Text style={{color: (this.props.rowData.invited) ? 'blue' :'black'}}>{this.props.name}</Text>
-        </View>
-        );
-    }
 }
 
 class Header extends React.Component {
