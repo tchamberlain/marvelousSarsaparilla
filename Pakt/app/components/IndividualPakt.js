@@ -150,8 +150,8 @@ class WinnersLosersView extends React.Component {
 }
 
 // component for displaying friends and highlighting invited friends
-class TabIcon extends React.Component {
-  toggleFriendInvite = (friend) => {
+class FriendIcon extends React.Component {
+  togglFriendSelect = (friend) => {
     friend.invited = !(friend.invited);
     this.forceUpdate()
   }
