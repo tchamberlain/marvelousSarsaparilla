@@ -43,6 +43,9 @@ class FriendsRow extends React.Component {
               x.selected = false;
             }
           }); 
+          // Update the selected user in the redux state
+          const {setSelectedUser} = this.props;
+          setSelectedUser(rowData.id);
         }
         rowData.selected = !(rowData.selected);
         this.setState({dataSource: ds.cloneWithRows(friends)
@@ -55,7 +58,7 @@ class FriendsRow extends React.Component {
       return (
       <View>
         <TouchableHighlight underlayColor='white' onPress = {()=>{this.toggleFriendSelect(rowData);  this.forceUpdate()}} style={styles.friend}>
-          <Image source={{uri: rowData.picture}} style={{width: 36, height: 36, borderRadius:18, borderWidth: 1, borderborderColor: (rowData.selected) ? 'blue' :'green'}}  />
+          <Image source={{uri: rowData.picture}} style={{width: 36, height: 36, borderRadius:18, borderWidth: 1, borderColor: (rowData.selected) ? 'blue' :'black'}}  />
         </TouchableHighlight>
           <Text style={{color: (rowData.selected) ? 'blue' :'black'}}>{rowData.name}</Text>
     </View>

@@ -11,6 +11,7 @@ import React, {
   ScrollView,
   Alert,
 } from 'react-native';
+var _ = require('lodash');
 
 const styles = StyleSheet.create({
   container: {
@@ -46,13 +47,14 @@ class PaktPics extends Component {
   constructor(props) {
     super(props);
   }
-
   renderPicsView() {
-    const { paktPictures } = this.props;
+    const { paktPictures, selectedUser } = this.props;
+    //want to only display pics from selected user
+    let selectedUserPics = paktPictures.filter(function(x){return x.UserId === selectedUser});
     let dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
-    dataSource = dataSource.cloneWithRows(paktPictures);
+    dataSource = dataSource.cloneWithRows(selectedUserPics);
 
     return (
       <View>
@@ -72,10 +74,10 @@ class PaktPics extends Component {
 
 }
 
-const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId, paktPictures }) => (
+const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId, paktPictures, selectedUser, setSelectedUser }) => (
   <View style={styles.container}>
     <ScrollView
-    // as boggs what this is here for 
+    // as boggs what this is here for !!!!!!!!!!!!!!!!!!!
       // ref={(scrollView) => { _scrollView = scrollView; }}
       automaticallyAdjustContentInsets={false}
       onScroll={() => { console.log('onScroll!'); }}
@@ -84,9 +86,8 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId,
         <Header open={currentPakt.open}  win={currentPakt.Pakt_User.win} paktName={currentPakt.name}/>
         <Text style={styles.subheading}>{currentPakt.description}</Text>
       <View>
-      <ShowFriends open={currentPakt.open} friends={currentPakt.Users}/>
-
-        {accepted ? <PaktPics paktPictures={paktPictures} /> :
+      <ShowFriends setSelectedUser={setSelectedUser} open={currentPakt.open} friends={currentPakt.Users}/>
+        {accepted ? <PaktPics selectedUser={selectedUser} paktPictures={paktPictures} /> :
           <View>
             <TouchableHighlight onPress={() => respondtoInvite(true, currentUserId, currentPakt.id)}><Text>Accept</Text></TouchableHighlight>
             <TouchableHighlight onPress={() => Alert.alert(
@@ -107,8 +108,8 @@ const IndividualPakt = ({ currentPakt, respondtoInvite, accepted, currentUserId,
 
 class ShowFriends extends React.Component {
   render(){
-    const {open, friends} = this.props;
-    return open ? <FriendsRow title={'Friends:'} numAllowedClicks={1} friends={friends}/> : <WinnersLosersView friends={friends}/>;
+    const {open, friends, currentPakt, setSelectedUser} = this.props;
+    return open ? <FriendsRow title={'Friends:'} setSelectedUser={setSelectedUser} numAllowedClicks={1} friends={friends}/> : <WinnersLosersView friends={friends}/>;
   }
 }
 
@@ -126,8 +127,8 @@ class WinnersLosersView extends React.Component {
   render(){
     return (
       <View>
-        <FriendsRow numAllowedClicks={1} friends={this.state.winners} title={'Winners:'}/>
-        <FriendsRow numAllowedClicks={1} friends={this.state.losers} title={'Losers:'}/>
+        <FriendsRow setSelectedUser={setSelectedUser} numAllowedClicks={1} friends={this.state.winners} title={'Winners:'}/>
+        <FriendsRow setSelectedUser={setSelectedUser} numAllowedClicks={1} friends={this.state.losers} title={'Losers:'}/>
       </View>
     );  
   };
