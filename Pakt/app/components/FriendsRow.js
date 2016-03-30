@@ -35,7 +35,7 @@ class FriendsRow extends React.Component {
 
   toggleFriendSelect = (rowData) => {
     const { friends, numAllowedClicks } = this.props;
-    if( numAllowedClicks!== 0){ //if selection allowed
+    if( numAllowedClicks!== 0){ //if user may select a friend
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         if (numAllowedClicks === 1) { //if only one selected friend allowed, de-select other friends
           friends.forEach(function(x){
