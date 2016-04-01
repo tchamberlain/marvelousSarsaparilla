@@ -19,18 +19,18 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
 
-   title: {
-    flex: .6,
-    marginTop: 20,
+  title: {
+    flex: .41,
+    marginTop: 23,
     alignItems: 'flex-end',
   },
 
-   logo: {
-    width:180,
-    height: 51,
+  logo: {
+    width:120,
+    height: 40,
   },
 
-   logout: {
+  logout: {
     flex: .2,
     fontWeight: 'bold',
     marginTop: 10,

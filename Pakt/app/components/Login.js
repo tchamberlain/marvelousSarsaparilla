@@ -98,8 +98,9 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
-    width: 86,
+    height: 40,
+    width: 40,
+    marginTop: 15,
   },
   FBLoginButton: {
     flex: 1,
@@ -129,9 +130,8 @@ var styles = StyleSheet.create({
   },
 
   FBLogo: {
-    position: 'absolute',
-    height: 55,
-    width: 56,
+    height: 50,
+    width: 50,
   },
 });
 
